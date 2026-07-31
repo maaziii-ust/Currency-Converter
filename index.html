@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Currency Converter</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <main class="app-container">
+    <div class="converter-card">
+      
+      <header class="card-header">
+        <h1 class="app-title">
+          <svg viewBox="0 0 24 24">
+            <path d="M16 3h5v5M4 20L21 3M8 21H3v-5M20 4L3 21"/>
+          </svg>
+          Currency Converter
+        </h1>
+        <p class="app-subtitle">Check real-time exchange rates around the world</p>
+      </header>
+
+      <div id="error-banner" class="error-banner" role="alert" style="display: none;">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span id="error-message">Unable to fetch exchange rates. Please try again.</span>
+      </div>
+
+      <form id="converter-form" class="converter-form">
+        
+        <div class="form-group">
+          <label for="amount" class="input-label">Amount</label>
+          <div class="input-wrapper">
+            <input 
+              type="number" 
+              id="amount" 
+              class="amount-input" 
+              placeholder="100.00" 
+              value="100"
+              step="any" 
+              min="0"
+              required
+            >
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top: 16px;">
+          <div class="currency-grid">
+            
+            <div>
+              <label for="from-currency" class="input-label" style="display: block; margin-bottom: 8px;">From</label>
+              <div class="select-wrapper">
+                <img id="from-flag" src="https://flagcdn.com/w40/us.png" alt="Flag" class="flag-icon">
+                <select id="from-currency" class="currency-select" aria-label="Source Currency">
+                  <option value="USD" data-country="us" selected>USD - US Dollar</option>
+                  <option value="EUR" data-country="eu">EUR - Euro</option>
+                  <option value="GBP" data-country="gb">GBP - British Pound</option>
+                  <option value="JPY" data-country="jp">JPY - Japanese Yen</option>
+                  <option value="CAD" data-country="ca">CAD - Canadian Dollar</option>
+                  <option value="PKR" data-country="pk">PKR - Pakistani Rupee</option>
+                  <option value="INR" data-country="in">INR - Indian Rupee</option>
+                </select>
+                <svg class="select-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </div>
+            </div>
+
+            <div class="swap-btn-container">
+              <button type="button" id="swap-btn" class="swap-btn" aria-label="Swap currencies" title="Swap currencies">
+                <svg viewBox="0 0 24 24">
+                  <path d="M7 16V4M7 4L3 8M7 4l4 4M17 8v12M17 20l4-4M17 20l-4-4"/>
+                </svg>
+              </button>
+            </div>
+
+            <div>
+              <label for="to-currency" class="input-label" style="display: block; margin-bottom: 8px;">To</label>
+              <div class="select-wrapper">
+                <img id="to-flag" src="https://flagcdn.com/w40/eu.png" alt="Flag" class="flag-icon">
+                <select id="to-currency" class="currency-select" aria-label="Target Currency">
+                  <option value="USD" data-country="us">USD - US Dollar</option>
+                  <option value="EUR" data-country="eu" selected>EUR - Euro</option>
+                  <option value="GBP" data-country="gb">GBP - British Pound</option>
+                  <option value="JPY" data-country="jp">JPY - Japanese Yen</option>
+                  <option value="CAD" data-country="ca">CAD - Canadian Dollar</option>
+                  <option value="PKR" data-country="pk">PKR - Pakistani Rupee</option>
+                  <option value="INR" data-country="in">INR - Indian Rupee</option>
+                </select>
+                <svg class="select-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <button type="submit" id="convert-btn" class="convert-btn" style="margin-top: 24px;">
+          <span>Convert</span>
+        </button>
+
+      </form>
+
+      <section id="result-card" class="result-card" aria-live="polite">
+        <div id="converted-amount" class="converted-amount">--</div>
+        <div id="exchange-rate" class="exchange-rate">1 USD = -- EUR</div>
+        <div id="last-updated" class="last-updated">Last updated: --</div>
+      </section>
+
+      <div id="skeleton-loader" class="skeleton-container" style="display: none;">
+        <div class="skeleton-line skeleton-title"></div>
+        <div class="skeleton-line skeleton-sub"></div>
+      </div>
+
+    </div>
+
+    <footer class="app-footer">
+      <p>Powered by <a href="https://www.exchangerate-api.com/" target="_blank" rel="noopener noreferrer">Exchange Rate API</a></p>
+    </footer>
+  </main>
+
+  <script type="module" src="js/script.js"></script>
+</body>
+</html>
