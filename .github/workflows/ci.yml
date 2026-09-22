@@ -14,17 +14,15 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Check HTML file
-  run: |
-    test -f index.html
-    grep -q "</html>" index.html
+        run: |
+          test -f index.html
+          grep -q "</html>" index.html
 
-      - name: Check JavaScript files
+      - name: Check JavaScript folder
         run: test -d js
 
-      - name: Check CSS files
+      - name: Check CSS folder
         run: test -d css
 
-      - name: Run basic project test
-        run: |
-          echo "Currency Converter files checked successfully."
-          echo "CI test passed."
+      - name: CI Test Passed
+        run: echo "Currency Converter CI test passed successfully."
