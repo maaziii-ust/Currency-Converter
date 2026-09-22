@@ -14,7 +14,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Check HTML file
-        run: test -f index.html
+  run: |
+    test -f index.html
+    grep -q "</html>" index.html
 
       - name: Check JavaScript files
         run: test -d js
